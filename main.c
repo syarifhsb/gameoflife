@@ -92,6 +92,8 @@ int main(int argc, char *argv[])
 
   SDL_Event e;
   int loop = 1;
+  struct timespec t1, t2;
+  clock_gettime(CLOCK_REALTIME, &t1);
   while ( loop ) {
     if ( SDL_PollEvent ( &e ) ) {
       switch ( e.type ) {
@@ -118,8 +120,12 @@ int main(int argc, char *argv[])
       }
     }
     SDL_RenderPresent( renderer );
-    SDL_Delay(50);
-    update_cell(init_n, init_m);
+    clock_gettime(CLOCK_REALTIME, &t2);
+    if (((t2.tv_sec - t1.tv_sec) * 1000 + 
+          (t2.tv_nsec - t1.tv_nsec) / 1000000) >= 100) {
+      update_cell(init_n, init_m);
+      t1 = t2;
+    }
   }
 
 quit_while:
