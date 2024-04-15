@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 
   window = SDL_CreateWindow( "Conway's game of life", 
       SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-      CELL_SIZE * init_n, CELL_SIZE * init_m,
+      CELL_SIZE * init_m, CELL_SIZE * init_n,
       SDL_WINDOW_SHOWN );
 
   renderer = SDL_CreateRenderer( window, -1,
@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
     SDL_Rect cell;
     for ( int i = 0; i < init_n; i++) {
       for ( int j = 0; j < init_m; j++) {
-        if ( cells[i * init_m + j] == true ) {
+        if ( cells[i * init_n + j] == true ) {
           cell.x = CELL_SIZE * j;
           cell.y = CELL_SIZE * i;
           cell.w = cell.h = CELL_SIZE;
