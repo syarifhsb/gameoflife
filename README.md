@@ -5,3 +5,5 @@ To run it, please build and launch the main application.
 ```
 $ ./build.sh && ./main
 ```
+
+![Demo](Demo.gif)
